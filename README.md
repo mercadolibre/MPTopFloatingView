@@ -1,4 +1,4 @@
-x# MPTopFloatingView
+# MPTopFloatingView
 Use this view to show new activities inside your app. Support iOS 7+.
 
 # Example
