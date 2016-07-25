@@ -56,12 +56,12 @@ typedef void (^NewsActionHandler)();
 	if (self = [super init]) {
 		
 		// Verify the param required
-		NSCAssert(color, @"Color can not be nil.");
-		NSCAssert(icon, @"Icon can not be nil.");
-		NSCAssert(text, @"Text can not be nil.");
-		NSCAssert(finalPosition, @"finalPosition can not be nil.");
-		NSCAssert(duration, @"duration can not be nil.");
-		NSCAssert(text.length, @"Text can not be empty.");
+		NSAssert(color, @"Color can not be nil.");
+		NSAssert(icon, @"Icon can not be nil.");
+		NSAssert(text, @"Text can not be nil.");
+		NSAssert(finalPosition, @"finalPosition can not be nil.");
+		NSAssert(duration, @"duration can not be nil.");
+		NSAssert(text.length, @"Text can not be empty.");
 	
 		self = [[[NSBundle mainBundle] loadNibNamed:@"MPTopFloatingView" owner:self options:nil] lastObject];
 	

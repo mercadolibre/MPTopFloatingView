@@ -23,7 +23,7 @@
 	self.navigationController.navigationBar.translucent = NO;
 	
 	self.newsView = [[MPTopFloatingView alloc] initTopFloatingViewWithOnTapBlock:^{
-		self.exampleLabel.text = @"You tap me!";
+		self.exampleLabel.text = @"Block Executed!";
 	}];
 	
 	[self.view addSubview:self.newsView];

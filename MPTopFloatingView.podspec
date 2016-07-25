@@ -7,11 +7,11 @@ Pod::Spec.new do |s|
                        Use this Pod to add a top floating view
                        DESC
 
-  s.homepage         = "https://github.com/mercadolibre/mpmobile-ios_topfloatingview"
-  s.license          = 'none'
+  s.homepage         = "https://github.com/mercadolibre/MPTopFloatingView"
+  s.license          = 'Apache License, Version 2.0'
   s.author           = { "MPMobile" => "mpmobile@mercadolibre.com" }
 
-  s.source           = { :git => "git@github.com:mercadolibre/mpmobile-ios_topfloatingview.git", :tag => s.version.to_s }
+  s.source           = { :git => "git@github.com:mercadolibre/MPTopFloatingView.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
