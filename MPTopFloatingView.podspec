@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = "https://github.com/mercadolibre/MPTopFloatingView"
   s.license          = 'Apache License, Version 2.0'
-  s.author           = { "MPMobile" => "mpmobile@mercadolibre.com" }
+  s.author           = { "MPMobile" => "mpmobileios@mercadolibre.com" }
 
   s.source           = { :git => "git@github.com:mercadolibre/MPTopFloatingView.git", :tag => s.version.to_s }
 
