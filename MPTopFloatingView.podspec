@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.license          = 'Apache License, Version 2.0'
   s.author           = { "MPMobile" => "mpmobileios@mercadolibre.com" }
 
-  s.source           = { :git => "git@github.com:mercadolibre/MPTopFloatingView.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/mercadolibre/MPTopFloatingView.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
