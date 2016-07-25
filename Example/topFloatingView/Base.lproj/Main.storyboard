@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="yVf-bI-Yij">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c61-ea-mWS">
+                                <rect key="frame" x="204" y="364" width="38" height="30"/>
+                                <state key="normal" title="Show"/>
+                                <connections>
+                                    <action selector="showNewsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="axT-Hy-JHg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ld-IG-xKk">
+                                <rect key="frame" x="365" y="364" width="32" height="30"/>
+                                <state key="normal" title="Hide"/>
+                                <connections>
+                                    <action selector="hideNewsView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pxd-6E-BzC"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMA-rG-Lgr">
+                                <rect key="frame" x="279" y="497" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="7Ld-IG-xKk" secondAttribute="trailing" constant="203" id="4dL-1j-q0k"/>
+                            <constraint firstItem="eMA-rG-Lgr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Xj-9j-46k"/>
+                            <constraint firstItem="c61-ea-mWS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="204" id="H3b-v0-gur"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="eMA-rG-Lgr" secondAttribute="bottom" constant="82" id="X9k-GY-cSn"/>
+                            <constraint firstItem="7Ld-IG-xKk" firstAttribute="baseline" secondItem="c61-ea-mWS" secondAttribute="baseline" id="bLy-do-ppD"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="c61-ea-mWS" secondAttribute="bottom" constant="206" id="lIB-Jw-UPz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Oua-lg-eL9"/>
+                    <connections>
+                        <outlet property="exampleLabel" destination="eMA-rG-Lgr" id="gxB-mW-ppH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1044" y="292"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="QuX-2v-f0u">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4r8-WH-itY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yVf-bI-Yij" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QGl-ff-hNJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="N2b-c5-JhV"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="195" y="952"/>
+        </scene>
+    </scenes>
+</document>
