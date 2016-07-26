@@ -8,5 +8,5 @@ branches:
   - master
   - development
 script:
-  - set -o pipefail && xcodebuild -workspace Example/topFloatingView.xcworkspace -scheme topFloatingView -configuration Debug -sdk iphonesimulator9.3 -destination "platform=iOS Simulator,OS=8.1,name=iPhone 6" test | xcpretty -c
+  - set -o pipefail && xcodebuild -workspace Example/topFloatingView.xcworkspace -scheme topFloatingView -configuration Debug -sdk iphonesimulator9.3 -destination "platform=iOS Simulator,OS=8.1,name=iPhone 6" build | xcpretty -c
 
