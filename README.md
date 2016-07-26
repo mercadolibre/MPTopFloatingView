@@ -1,6 +1,7 @@
 # MPTopFloatingView
 Use this view to show new activities inside your app. Support iOS 7+.
 
+
 # Example
 ![Demo](https://cloud.githubusercontent.com/assets/10763919/16918272/43cdb20e-4cdb-11e6-875e-d955623b685f.gif)
 
