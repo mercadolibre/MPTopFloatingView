@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  MPTopFloatingView: 00c744cf8d96a40ed575e18a509cc3b36067d769
+  MPTopFloatingView: b8738be9cfc27f4dcd50ece77ebb3756528d7acb
 
 COCOAPODS: 0.39.0
