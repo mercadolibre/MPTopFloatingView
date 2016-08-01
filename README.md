@@ -13,17 +13,25 @@ Use this view to show new activities inside your app. Support iOS 7+.
 
 #### 2. Create an intance
 ```objective-c
-newsView = [[MPTopFloatingView alloc] initTopFloatingViewWithOnTapBlock:^{
-		// Use this block to execute something...
-	}];
+self.newsView = [[MPTopFloatingView alloc] initTopFloatingViewWithDismissBlock:^(MPTopFloatingViewDismissCause cause) {
+    if (cause == MPTopFloatingViewDismissCauseTap) {
+        //View was tapped! Use this block to execute something..
+    }
+}];
 ```
 Use one of this alternative initializer to customize the view
 ##### ・More initializers
 ```objective-c
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon onTapBlock:(nullable void (^)())newsActionHandler;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
 ```
 ```objective-c
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration onTapBlock:(nullable void (^)())newsActionHandler;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
+```
+```objective-c
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
+```
+```objective-c
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
 ```
 
 #### 3. Include the view inside the hierarchy
