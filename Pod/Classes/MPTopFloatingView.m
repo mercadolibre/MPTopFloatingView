@@ -38,7 +38,7 @@
 @implementation MPTopFloatingView
 
 #pragma mark initializers
-- (nonnull instancetype)initTopFloatingViewWithDismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock
+- (nonnull instancetype)initTopFloatingViewWithDismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
     // Setup the default configuration
     self = [self initTopFloatingViewWithText:@"New Activities" color:[UIColor colorWithRed:0 green:0.62 blue:0.89 alpha:1] icon:[UIImage imageNamed:@"up-arrow"] dismissBlock:dismissBlock];
@@ -46,7 +46,7 @@
     return self;
 }
 
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
     // Setup a default final position and duration if this method is used
     self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:icon finalPosition:30 duration:0.5 dismissBlock:dismissBlock];
@@ -54,21 +54,21 @@
     return self;
 }
 
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
     self = [self initTopFloatingViewWithText:text textFont:font textColor:textColor color:color icon:icon finalPosition:finalPosition duration:duration timeToDismiss:0 dismissBlock:dismissBlock];
     
     return self;
 }
 
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock {
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock {
     
     self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:[UIImage imageNamed:@"up-arrow"] finalPosition:30 duration:0.5 timeToDismiss:timeToDismiss dismissBlock:dismissBlock];
     
     return self;
 }
 
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
     if (self = [super init]) {
         
@@ -129,6 +129,7 @@
     }
     
     if (status == MPTopFloatingViewStatusDisappear) {
+        [self.timer invalidate];
         self.currentStatus = MPTopFloatingViewStatusDisappear;
         self.center = CGPointMake(self.initialPositionX, self.initialPositionY);
         return;
@@ -221,7 +222,6 @@
 
 - (void)autoDismiss
 {
-    [self.timer invalidate];
     [self startAnimation:MPTopFloatingViewStatusDisappear];
     if (self.dismissBlock) {
         self.dismissBlock(MPTopFloatingViewDismissCauseAuto);

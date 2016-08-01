@@ -55,7 +55,7 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
  @param icon Icon to add inside the view
  @param dismissBlock The block to be executed when the view is dismissed
  */
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock;
 
 
 /**
@@ -67,7 +67,7 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
  *  @param dismissBlock The block to be executed when the view is dismissed
  *
  */
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock;
 
 
 /**
@@ -80,7 +80,7 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
  @param finalPosition Use this param to determine the final position of the view when appear on the screen
  @param dismissBlock The block to be executed when the view is dismissed
  */
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock;
 
 /**
  This is the designated initializer
@@ -93,7 +93,7 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
  @param timeToDismiss After this time the view will be dismissed
  @param dismissBlock The block to be executed when the view is dismissed
  */
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock;
 
 ///---------------------
 /// @name Animations
