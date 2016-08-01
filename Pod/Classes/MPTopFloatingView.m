@@ -10,8 +10,6 @@
 // Use this macro to determine the current iOS version
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
-typedef void (^NewsActionHandler)();
-
 @interface MPTopFloatingView()
 
 // IBOutlets
@@ -20,7 +18,6 @@ typedef void (^NewsActionHandler)();
 
 // Private properties
 @property (nonatomic) MPTopFloatingViewStatus currentStatus;
-@property (nonatomic, copy) NewsActionHandler completionBlock;
 
 // Layer and animation properties
 @property (nonatomic) NSTimeInterval duration;
@@ -41,36 +38,37 @@ typedef void (^NewsActionHandler)();
 @implementation MPTopFloatingView
 
 #pragma mark initializers
-- (nonnull instancetype)initTopFloatingViewWithOnTapBlock:(nullable void (^)())newsActionHandler
+- (nonnull instancetype)initTopFloatingViewWithDismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock
 {
     // Setup the default configuration
-    self = [self initTopFloatingViewWithText:@"New Activities" color:[UIColor colorWithRed:0 green:0.62 blue:0.89 alpha:1] icon:[UIImage imageNamed:@"up-arrow"] onTapBlock:newsActionHandler];
+    self = [self initTopFloatingViewWithText:@"New Activities" color:[UIColor colorWithRed:0 green:0.62 blue:0.89 alpha:1] icon:[UIImage imageNamed:@"up-arrow"] dismissBlock:dismissBlock];
+    
     return self;
 }
 
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon onTapBlock:(nullable void (^)())newsActionHandler
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock
 {
     // Setup a default final position and duration if this method is used
-    self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:icon finalPosition:30 duration:0.5 onTapBlock:newsActionHandler];
+    self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:icon finalPosition:30 duration:0.5 dismissBlock:dismissBlock];
     
     return self;
 }
 
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration onTapBlock:(nullable void (^)())newsActionHandler
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock
 {
-    self = [self initTopFloatingViewWithText:text textFont:font textColor:textColor color:color icon:icon finalPosition:finalPosition duration:duration timeToDismiss:0 dismissBlock:nil onTapBlock:newsActionHandler];
+    self = [self initTopFloatingViewWithText:text textFont:font textColor:textColor color:color icon:icon finalPosition:finalPosition duration:duration timeToDismiss:0 dismissBlock:dismissBlock];
     
     return self;
 }
 
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock onTapBlock:(nullable void (^)())newsActionHandler
-{
-    self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:[UIImage imageNamed:@"up-arrow"] finalPosition:30 duration:0.5 timeToDismiss:timeToDismiss dismissBlock:dismissBlock onTapBlock:newsActionHandler];
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock {
+    
+    self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:[UIImage imageNamed:@"up-arrow"] finalPosition:30 duration:0.5 timeToDismiss:timeToDismiss dismissBlock:dismissBlock];
     
     return self;
 }
 
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock onTapBlock:(nullable void (^)())newsActionHandler
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock
 {
     if (self = [super init]) {
         
@@ -85,7 +83,7 @@ typedef void (^NewsActionHandler)();
         self = [[[NSBundle mainBundle] loadNibNamed:@"MPTopFloatingView" owner:self options:nil] lastObject];
         
         // Setup the style
-        [self setupStyleWithText:text textFont:font textColor:textColor finalPosition:finalPosition duration:duration backgroundColor:color icon:icon timeToDismiss:timeToDismiss dismissBlock:dismissBlock completionBlock:newsActionHandler];
+        [self setupStyleWithText:text textFont:font textColor:textColor finalPosition:finalPosition duration:duration backgroundColor:color icon:icon timeToDismiss:timeToDismiss dismissBlock:dismissBlock];
         [self handleTapAction];
     }
     
@@ -93,9 +91,8 @@ typedef void (^NewsActionHandler)();
 }
 
 #pragma mark setup
-- (void)setupStyleWithText:(NSString *)text textFont:(UIFont *)font textColor:(UIColor *)textColor finalPosition:(float)finalPosition duration:(float)duration backgroundColor:(UIColor *)color icon:(UIImage *)icon timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock completionBlock:(void (^)())completionBlock
+- (void)setupStyleWithText:(NSString *)text textFont:(UIFont *)font textColor:(UIColor *)textColor finalPosition:(float)finalPosition duration:(float)duration backgroundColor:(UIColor *)color icon:(UIImage *)icon timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock
 {
-    self.completionBlock = completionBlock;
     self.layer.cornerRadius = CGRectGetHeight(self.bounds)/2;
     self.currentStatus = MPTopFloatingViewStatusDisappear;
     self.backgroundColor = color;
@@ -242,10 +239,6 @@ typedef void (^NewsActionHandler)();
 - (void)viewTapped:(UIGestureRecognizer *) sender
 {
     [self startAnimation:MPTopFloatingViewStatusDisappear];
-    
-    if (self.completionBlock) {
-        self.completionBlock();
-    }
     
     if (self.dismissBlock) {
         self.dismissBlock(MPTopFloatingViewDismissCauseTap);

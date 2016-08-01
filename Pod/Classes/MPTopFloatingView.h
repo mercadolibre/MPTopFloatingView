@@ -44,18 +44,18 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
 
 /**
  Use this method to create an instance with the default configuration
- @param newsActionHandler The block to be executed when the view is tapped
+ @param dismissBlock The block to be executed when the view is dismissed
  */
-- (nonnull instancetype)initTopFloatingViewWithOnTapBlock:(nullable void (^)())newsActionHandler;
+- (nonnull instancetype)initTopFloatingViewWithDismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
 
 /**
  This method need all the paremers for full customization
  @param text The text inside the view
  @param color Color to fill the background view
  @param icon Icon to add inside the view
- @param newsActionHandler The block to be executed when the view is tapped
+ @param dismissBlock The block to be executed when the view is dismissed
  */
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon onTapBlock:(nullable void (^)())newsActionHandler;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
 
 
 /**
@@ -64,10 +64,10 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
  *  @param text              The text inside the view
  *  @param color             Color to fill the background view
  *  @param timeToDismiss     After this time the view will be dismissed (in seconds)
- *  @param newsActionHandler The block to be executed when the view is tapped
+ *  @param dismissBlock The block to be executed when the view is dismissed
  *
  */
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock onTapBlock:(nullable void (^)())newsActionHandler;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
 
 
 /**
@@ -78,9 +78,9 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
  @param color Color to fill the background view
  @param icon Icon to add inside the view
  @param finalPosition Use this param to determine the final position of the view when appear on the screen
- @param newsActionHandler The block to be executed when the view is tapped
+ @param dismissBlock The block to be executed when the view is dismissed
  */
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration onTapBlock:(nullable void (^)())newsActionHandler;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
 
 /**
  This is the designated initializer
@@ -92,9 +92,8 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
  @param finalPosition Use this param to determine the final position of the view when appear on the screen
  @param timeToDismiss After this time the view will be dismissed
  @param dismissBlock The block to be executed when the view is dismissed
- @param newsActionHandler The block to be executed when the view is tapped
  */
-- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock onTapBlock:(nullable void (^)())newsActionHandler;
+- (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
 
 ///---------------------
 /// @name Animations
