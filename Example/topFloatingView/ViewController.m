@@ -21,18 +21,18 @@
 	[super viewDidLoad];
 	
 	self.navigationController.navigationBar.translucent = NO;
-	
-	self.newsView = [[MPTopFloatingView alloc] initTopFloatingViewWithOnTapBlock:^{
-		self.exampleLabel.text = @"Block Executed!";
-	}];
+    
+    self.newsView = [[MPTopFloatingView alloc] initTopFloatingViewWithDismissBlock:^(MPTopFloatingViewDismissCause cause) {
+        if (cause == MPTopFloatingViewDismissCauseTap) {
+            self.exampleLabel.text = @"Floating view was tapped!";
+        }
+    }];
 	
 	[self.view addSubview:self.newsView];
 	self.newsView.translatesAutoresizingMaskIntoConstraints = NO;
 	
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.newsView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:-40]];
 	[self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.newsView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
-	
-	
 }
 
 - (void)didReceiveMemoryWarning {
