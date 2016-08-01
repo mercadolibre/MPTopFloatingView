@@ -46,7 +46,7 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
    Use this method to create an instance with the default configuration
    @param dismissBlock The block to be executed when the view is dismissed
  */
-- (nonnull instancetype)initTopFloatingViewWithDismissBlock:(MPTopFloatingViewDismissBlock)dismissBlock;
+- (nonnull instancetype)initTopFloatingViewWithDismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock;
 
 /**
    This method need all the paremers for full customization
@@ -103,6 +103,8 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
  */
 - (void)startAnimation:(MPTopFloatingViewStatus)status;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  *  Text inside the view. Set this property to change the message after creating the view.
  */
@@ -112,5 +114,7 @@ typedef void (^MPTopFloatingViewDismissBlock)(MPTopFloatingViewDismissCause caus
  *  The current status of the floating view (read-only)
  */
 @property (readonly) MPTopFloatingViewStatus status;
+
+NS_ASSUME_NONNULL_END
 
 @end
