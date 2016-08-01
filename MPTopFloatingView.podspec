@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "MPTopFloatingView"
-  s.version          = "0.1.0"
+  s.version          = "0.2.0"
   s.summary          = "Mercado Pago Top Floating View"
 
   s.description      = <<-DESC
