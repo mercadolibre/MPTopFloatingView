@@ -155,12 +155,6 @@
 {
 	self.animLayer = self.layer;
 
-	// Save the initial position of the view
-	if (!self.initialPositionY && !self.initialPositionX) {
-		self.initialPositionX = CGRectGetMidX(self.frame);
-		self.initialPositionY = CGRectGetMinY(self.frame);
-	}
-
 	if (status == MPTopFloatingViewStatusAppear) {
 		// perform the animation depending the iOS version
 		if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
@@ -242,6 +236,22 @@
 	if (self.dismissBlock) {
 		self.dismissBlock(MPTopFloatingViewDismissCauseTap);
 	}
+}
+
+-(CGFloat)initialPositionX
+{
+    if(!_initialPositionX){
+        _initialPositionX = CGRectGetMidX(self.frame);
+    }
+    return _initialPositionX;
+}
+
+-(CGFloat)initialPositionY
+{
+    if(!_initialPositionY){
+        _initialPositionY = CGRectGetMidY(self.frame);
+    }
+    return _initialPositionY;
 }
 
 @end
