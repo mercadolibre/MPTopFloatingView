@@ -123,8 +123,7 @@
 				                                         repeats:NO];
 		}
 		self.currentStatus = MPTopFloatingViewStatusAppear;
-        self.frame = CGRectMake(self.frame.origin.x, self.finalPosition, self.frame.size.width, self.frame.size.height);
-        NSLog(@"after setupFinalState: %f", self.frame.origin.x);
+		self.frame = CGRectMake(self.frame.origin.x, self.finalPosition, self.frame.size.width, self.frame.size.height);
 		return;
 	}
 
@@ -132,7 +131,6 @@
 		[self.timer invalidate];
 		self.currentStatus = MPTopFloatingViewStatusDisappear;
 		self.frame = CGRectMake(self.frame.origin.x, self.initialPositionY-self.frame.size.height, self.frame.size.width, self.frame.size.height);
-        NSLog(@"after setupFinalState: %f", self.frame.origin.x);
 		return;
 	}
 }
