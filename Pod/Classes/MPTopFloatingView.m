@@ -123,14 +123,14 @@
 				                                         repeats:NO];
 		}
 		self.currentStatus = MPTopFloatingViewStatusAppear;
-		self.center = CGPointMake(self.initialPositionX, self.finalPosition);
+		self.frame = CGRectMake(self.frame.origin.x, self.finalPosition, self.frame.size.width, self.frame.size.height);
 		return;
 	}
 
 	if (status == MPTopFloatingViewStatusDisappear) {
 		[self.timer invalidate];
 		self.currentStatus = MPTopFloatingViewStatusDisappear;
-		self.center = CGPointMake(self.initialPositionX, self.initialPositionY);
+		self.frame = CGRectMake(self.frame.origin.x, self.initialPositionY-self.frame.size.height, self.frame.size.width, self.frame.size.height);
 		return;
 	}
 }
@@ -154,12 +154,6 @@
 - (void)startAnimation:(MPTopFloatingViewStatus)status
 {
 	self.animLayer = self.layer;
-
-	// Save the initial position of the view
-	if (!self.initialPositionY && !self.initialPositionX) {
-		self.initialPositionX = CGRectGetMidX(self.frame);
-		self.initialPositionY = CGRectGetMinY(self.frame);
-	}
 
 	if (status == MPTopFloatingViewStatusAppear) {
 		// perform the animation depending the iOS version
@@ -242,6 +236,22 @@
 	if (self.dismissBlock) {
 		self.dismissBlock(MPTopFloatingViewDismissCauseTap);
 	}
+}
+
+-(CGFloat)initialPositionX
+{
+    if(!_initialPositionX){
+        _initialPositionX = CGRectGetMidX(self.frame);
+    }
+    return _initialPositionX;
+}
+
+-(CGFloat)initialPositionY
+{
+    if(!_initialPositionY){
+        _initialPositionY = CGRectGetMidY(self.frame);
+    }
+    return _initialPositionY;
 }
 
 @end
