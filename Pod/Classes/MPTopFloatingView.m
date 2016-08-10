@@ -123,14 +123,16 @@
 				                                         repeats:NO];
 		}
 		self.currentStatus = MPTopFloatingViewStatusAppear;
-		self.center = CGPointMake(self.initialPositionX, self.finalPosition);
+        self.frame = CGRectMake(self.frame.origin.x, self.finalPosition, self.frame.size.width, self.frame.size.height);
+        NSLog(@"after setupFinalState: %f", self.frame.origin.x);
 		return;
 	}
 
 	if (status == MPTopFloatingViewStatusDisappear) {
 		[self.timer invalidate];
 		self.currentStatus = MPTopFloatingViewStatusDisappear;
-		self.center = CGPointMake(self.initialPositionX, self.initialPositionY);
+		self.frame = CGRectMake(self.frame.origin.x, self.initialPositionY-self.frame.size.height, self.frame.size.width, self.frame.size.height);
+        NSLog(@"after setupFinalState: %f", self.frame.origin.x);
 		return;
 	}
 }
