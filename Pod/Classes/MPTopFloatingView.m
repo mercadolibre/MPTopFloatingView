@@ -123,14 +123,14 @@
 				                                         repeats:NO];
 		}
 		self.currentStatus = MPTopFloatingViewStatusAppear;
-		self.frame = CGRectMake(self.frame.origin.x, self.finalPosition, self.frame.size.width, self.frame.size.height);
+		self.frame = CGRectMake(self.frame.origin.x, self.finalPosition-CGRectGetHeight(self.frame)/2, self.frame.size.width, self.frame.size.height);
 		return;
 	}
 
 	if (status == MPTopFloatingViewStatusDisappear) {
 		[self.timer invalidate];
 		self.currentStatus = MPTopFloatingViewStatusDisappear;
-		self.frame = CGRectMake(self.frame.origin.x, self.initialPositionY, self.frame.size.width, self.frame.size.height);
+		self.frame = CGRectMake(self.frame.origin.x, self.initialPositionY-CGRectGetHeight(self.frame)/2, self.frame.size.width, self.frame.size.height);
 		return;
 	}
 }
@@ -249,7 +249,7 @@
 -(CGFloat)initialPositionY
 {
     if(!_initialPositionY){
-        _initialPositionY = CGRectGetMinY(self.frame);
+        _initialPositionY = CGRectGetMidY(self.frame);
     }
     return _initialPositionY;
 }
