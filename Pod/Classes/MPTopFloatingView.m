@@ -177,7 +177,7 @@
 	// Prevent show the view if is not hidden
 	if (self.currentStatus == MPTopFloatingViewStatusDisappear) {
 		CABasicAnimation *showAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
-		showAnimation.duration = 0.2;
+		showAnimation.duration = self.duration;
 		showAnimation.fromValue = [NSNumber numberWithFloat:self.initialPositionY];
 		showAnimation.toValue = [NSNumber numberWithFloat:self.finalPosition];
 		[self setupFinalState:MPTopFloatingViewStatusAppear];
@@ -204,7 +204,7 @@
 	// Prevent hide the view if is not already presented
 	if (self.currentStatus == MPTopFloatingViewStatusAppear) {
 		CABasicAnimation *hideAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
-		hideAnimation.duration = 0.2;
+		hideAnimation.duration = self.duration;
 		hideAnimation.fromValue = [NSNumber numberWithFloat:self.finalPosition];
 		hideAnimation.toValue = [NSNumber numberWithFloat:self.initialPositionY];
 		hideAnimation.removedOnCompletion = YES;
