@@ -122,7 +122,7 @@
 				                                         repeats:NO];
 		}
 		self.currentStatus = MPTopFloatingViewStatusAppear;
-        CGFloat final = self.finalPosition-CGRectGetHeight(self.frame)/2;
+		CGFloat final = self.finalPosition-CGRectGetHeight(self.frame)/2;
 		self.frame = CGRectMake(self.frame.origin.x, final, self.frame.size.width, self.frame.size.height);
 		return;
 	}
@@ -130,7 +130,7 @@
 	if (status == MPTopFloatingViewStatusDisappear) {
 		[self.timer invalidate];
 		self.currentStatus = MPTopFloatingViewStatusDisappear;
-        CGFloat origin = self.initialPositionY - CGRectGetHeight(self.frame)/2;
+		CGFloat origin = self.initialPositionY - CGRectGetHeight(self.frame)/2;
 		self.frame = CGRectMake(self.frame.origin.x, origin, self.frame.size.width, self.frame.size.height);
 		return;
 	}
