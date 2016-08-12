@@ -130,7 +130,7 @@
 	if (status == MPTopFloatingViewStatusDisappear) {
 		[self.timer invalidate];
 		self.currentStatus = MPTopFloatingViewStatusDisappear;
-		self.frame = CGRectMake(self.frame.origin.x, self.initialPositionY-CGRectGetHeight(self.frame)/2, self.frame.size.width, self.frame.size.height);
+		self.frame = CGRectMake(self.frame.origin.x, self.initialPositionY-CGRectGetHeight(self.frame), self.frame.size.width, self.frame.size.height);
 		return;
 	}
 }
