@@ -24,9 +24,8 @@
 @property (strong, nonatomic) CALayer *animLayer;
 
 // Default view positions
-@property (nonatomic) float initialPositionY;
-@property (nonatomic) float initialPositionX;
-@property (nonatomic) float finalPosition;
+@property (nonatomic) CGFloat initialPositionY;
+@property (nonatomic) CGFloat finalPosition;
 
 // Auto dismiss
 @property (strong, nonatomic) NSTimer *timer;
@@ -123,14 +122,16 @@
 				                                         repeats:NO];
 		}
 		self.currentStatus = MPTopFloatingViewStatusAppear;
-		self.frame = CGRectMake(self.frame.origin.x, self.finalPosition-CGRectGetHeight(self.frame)/2, self.frame.size.width, self.frame.size.height);
+        CGFloat final = self.finalPosition-CGRectGetHeight(self.frame)/2;
+		self.frame = CGRectMake(self.frame.origin.x, final, self.frame.size.width, self.frame.size.height);
 		return;
 	}
 
 	if (status == MPTopFloatingViewStatusDisappear) {
 		[self.timer invalidate];
 		self.currentStatus = MPTopFloatingViewStatusDisappear;
-		self.frame = CGRectMake(self.frame.origin.x, self.initialPositionY-CGRectGetHeight(self.frame), self.frame.size.width, self.frame.size.height);
+        CGFloat origin = self.initialPositionY - CGRectGetHeight(self.frame)/2;
+		self.frame = CGRectMake(self.frame.origin.x, origin, self.frame.size.width, self.frame.size.height);
 		return;
 	}
 }
@@ -236,14 +237,6 @@
 	if (self.dismissBlock) {
 		self.dismissBlock(MPTopFloatingViewDismissCauseTap);
 	}
-}
-
--(CGFloat)initialPositionX
-{
-    if(!_initialPositionX){
-        _initialPositionX = CGRectGetMidX(self.frame);
-    }
-    return _initialPositionX;
 }
 
 -(CGFloat)initialPositionY
