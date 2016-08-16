@@ -69,7 +69,7 @@
 
 - (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
-	if (self = [super init]) {
+	if (self = [[[NSBundle mainBundle] loadNibNamed:@"MPTopFloatingView" owner:self options:nil] lastObject]) {
 		// Verify the param required
 		NSAssert(color, @"Color can not be nil.");
 		NSAssert(icon, @"Icon can not be nil.");
@@ -77,8 +77,6 @@
 		NSAssert(finalPosition, @"finalPosition can not be nil.");
 		NSAssert(duration, @"duration can not be nil.");
 		NSAssert(text.length, @"Text can not be empty.");
-
-		self = [[[NSBundle mainBundle] loadNibNamed:@"MPTopFloatingView" owner:self options:nil] lastObject];
 
 		// Setup the style
 		[self setupStyleWithText:text textFont:font textColor:textColor finalPosition:finalPosition duration:duration backgroundColor:color icon:icon timeToDismiss:timeToDismiss dismissBlock:dismissBlock];
