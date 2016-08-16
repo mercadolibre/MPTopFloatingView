@@ -1,5 +1,5 @@
 PODS:
-  - MPTopFloatingView (0.1.0)
+  - MPTopFloatingView (0.2.1)
 
 DEPENDENCIES:
   - MPTopFloatingView (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  MPTopFloatingView: b8738be9cfc27f4dcd50ece77ebb3756528d7acb
+  MPTopFloatingView: c3df18514134e4006eb528a417a9704be0578af7
 
 COCOAPODS: 0.39.0
