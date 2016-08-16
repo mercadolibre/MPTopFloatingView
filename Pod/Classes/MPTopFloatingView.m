@@ -24,9 +24,8 @@
 @property (strong, nonatomic) CALayer *animLayer;
 
 // Default view positions
-@property (nonatomic) float initialPositionY;
-@property (nonatomic) float initialPositionX;
-@property (nonatomic) float finalPosition;
+@property (nonatomic) CGFloat initialPositionY;
+@property (nonatomic) CGFloat finalPosition;
 
 // Auto dismiss
 @property (strong, nonatomic) NSTimer *timer;
@@ -70,7 +69,7 @@
 
 - (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
-	if (self = [super init]) {
+	if (self = [[[NSBundle mainBundle] loadNibNamed:@"MPTopFloatingView" owner:self options:nil] lastObject]) {
 		// Verify the param required
 		NSAssert(color, @"Color can not be nil.");
 		NSAssert(icon, @"Icon can not be nil.");
@@ -78,8 +77,6 @@
 		NSAssert(finalPosition, @"finalPosition can not be nil.");
 		NSAssert(duration, @"duration can not be nil.");
 		NSAssert(text.length, @"Text can not be empty.");
-
-		self = [[[NSBundle mainBundle] loadNibNamed:@"MPTopFloatingView" owner:self options:nil] lastObject];
 
 		// Setup the style
 		[self setupStyleWithText:text textFont:font textColor:textColor finalPosition:finalPosition duration:duration backgroundColor:color icon:icon timeToDismiss:timeToDismiss dismissBlock:dismissBlock];
@@ -123,14 +120,16 @@
 				                                         repeats:NO];
 		}
 		self.currentStatus = MPTopFloatingViewStatusAppear;
-		self.frame = CGRectMake(self.frame.origin.x, self.finalPosition, self.frame.size.width, self.frame.size.height);
+		CGFloat final = self.finalPosition-CGRectGetHeight(self.frame)/2;
+		self.frame = CGRectMake(self.frame.origin.x, final, self.frame.size.width, self.frame.size.height);
 		return;
 	}
 
 	if (status == MPTopFloatingViewStatusDisappear) {
 		[self.timer invalidate];
 		self.currentStatus = MPTopFloatingViewStatusDisappear;
-		self.frame = CGRectMake(self.frame.origin.x, self.initialPositionY-self.frame.size.height, self.frame.size.width, self.frame.size.height);
+		CGFloat origin = self.initialPositionY - CGRectGetHeight(self.frame)/2;
+		self.frame = CGRectMake(self.frame.origin.x, origin, self.frame.size.width, self.frame.size.height);
 		return;
 	}
 }
@@ -177,7 +176,7 @@
 	// Prevent show the view if is not hidden
 	if (self.currentStatus == MPTopFloatingViewStatusDisappear) {
 		CABasicAnimation *showAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
-		showAnimation.duration = 0.2;
+		showAnimation.duration = self.duration;
 		showAnimation.fromValue = [NSNumber numberWithFloat:self.initialPositionY];
 		showAnimation.toValue = [NSNumber numberWithFloat:self.finalPosition];
 		[self setupFinalState:MPTopFloatingViewStatusAppear];
@@ -204,7 +203,7 @@
 	// Prevent hide the view if is not already presented
 	if (self.currentStatus == MPTopFloatingViewStatusAppear) {
 		CABasicAnimation *hideAnimation = [CABasicAnimation animationWithKeyPath:@"position.y"];
-		hideAnimation.duration = 0.2;
+		hideAnimation.duration = self.duration;
 		hideAnimation.fromValue = [NSNumber numberWithFloat:self.finalPosition];
 		hideAnimation.toValue = [NSNumber numberWithFloat:self.initialPositionY];
 		hideAnimation.removedOnCompletion = YES;
@@ -236,14 +235,6 @@
 	if (self.dismissBlock) {
 		self.dismissBlock(MPTopFloatingViewDismissCauseTap);
 	}
-}
-
--(CGFloat)initialPositionX
-{
-    if(!_initialPositionX){
-        _initialPositionX = CGRectGetMidX(self.frame);
-    }
-    return _initialPositionX;
 }
 
 -(CGFloat)initialPositionY
