@@ -48,7 +48,7 @@
 - (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
 	// Setup a default final position and duration if this method is used
-	self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:icon finalPosition:30 duration:0.5 dismissBlock:dismissBlock];
+	self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:icon finalPosition:30 duration:0.9 dismissBlock:dismissBlock];
 
 	return self;
 }
@@ -62,7 +62,7 @@
 
 - (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
-	self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:[UIImage imageNamed:@"up-arrow"] finalPosition:30 duration:0.5 timeToDismiss:timeToDismiss dismissBlock:dismissBlock];
+	self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:[UIImage imageNamed:@"up-arrow"] finalPosition:30 duration:0.9 timeToDismiss:timeToDismiss dismissBlock:dismissBlock];
 
 	return self;
 }
@@ -189,10 +189,10 @@
 	// Prevent show the view if is not hidden
 	if (self.currentStatus == MPTopFloatingViewStatusDisappear) {
 		CASpringAnimation *spring = [CASpringAnimation animationWithKeyPath:@"position.y"];
-		spring.damping = 5;
+		spring.damping = 8;
+		spring.duration = self.duration;
 		spring.fromValue = [NSNumber numberWithFloat:self.initialPositionY];
 		spring.toValue = [NSNumber numberWithFloat:self.finalPosition];
-		spring.duration = self.duration;
 		[self setupFinalState:MPTopFloatingViewStatusAppear];
 		[self.layer addAnimation:spring forKey:nil];
 	}
@@ -244,5 +244,4 @@
     }
     return _initialPositionY;
 }
-
 @end
