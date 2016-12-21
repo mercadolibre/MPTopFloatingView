@@ -40,7 +40,8 @@
 - (nonnull instancetype)initTopFloatingViewWithDismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
 	// Setup the default configuration
-	self = [self initTopFloatingViewWithText:@"New Activities" color:[UIColor colorWithRed:0 green:0.62 blue:0.89 alpha:1] icon:[UIImage imageNamed:@"up-arrow"] dismissBlock:dismissBlock];
+	UIImage *image= [UIImage imageNamed:@"up-arrow" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+	self = [self initTopFloatingViewWithText:@"New Activities" color:[UIColor colorWithRed:0 green:0.62 blue:0.89 alpha:1] icon:image dismissBlock:dismissBlock];
 
 	return self;
 }
@@ -69,7 +70,7 @@
 
 - (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text textFont:(nullable UIFont *)font textColor:(nullable UIColor *)textColor color:(nonnull UIColor *)color icon:(nonnull UIImage *)icon finalPosition:(float)finalPosition duration:(float)duration timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
-	if (self = [[[NSBundle mainBundle] loadNibNamed:@"MPTopFloatingView" owner:self options:nil] lastObject]) {
+	if (self = [[[NSBundle bundleForClass:[self class]] loadNibNamed:@"MPTopFloatingView" owner:self options:nil] lastObject]) {
 		// Verify the param required
 		NSAssert(color, @"Color can not be nil.");
 		NSAssert(icon, @"Icon can not be nil.");
