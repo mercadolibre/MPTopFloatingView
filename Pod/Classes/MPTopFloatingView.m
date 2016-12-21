@@ -190,10 +190,10 @@
 	// Prevent show the view if is not hidden
 	if (self.currentStatus == MPTopFloatingViewStatusDisappear) {
 		CASpringAnimation *spring = [CASpringAnimation animationWithKeyPath:@"position.y"];
-		spring.damping = 5;
+		spring.damping = 8;
+		spring.duration = self.duration;
 		spring.fromValue = [NSNumber numberWithFloat:self.initialPositionY];
 		spring.toValue = [NSNumber numberWithFloat:self.finalPosition];
-		spring.duration = self.duration;
 		[self setupFinalState:MPTopFloatingViewStatusAppear];
 		[self.layer addAnimation:spring forKey:nil];
 	}
@@ -245,5 +245,4 @@
     }
     return _initialPositionY;
 }
-
 @end
