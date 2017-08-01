@@ -63,7 +63,8 @@
 
 - (nonnull instancetype)initTopFloatingViewWithText:(nonnull NSString *)text color:(nonnull UIColor *)color timeToDismiss:(NSTimeInterval)timeToDismiss dismissBlock:(nonnull MPTopFloatingViewDismissBlock)dismissBlock
 {
-	self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:[UIImage imageNamed:@"up-arrow"] finalPosition:30 duration:0.5 timeToDismiss:timeToDismiss dismissBlock:dismissBlock];
+    UIImage *image= [UIImage imageNamed:@"up-arrow" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+	self = [self initTopFloatingViewWithText:text textFont:nil textColor:nil color:color icon:image finalPosition:30 duration:0.5 timeToDismiss:timeToDismiss dismissBlock:dismissBlock];
 
 	return self;
 }
